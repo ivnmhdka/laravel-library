@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
+use App\Models\Book;
 
-class ContactController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::paginate(2);
-        return view('admin/contacts/index', compact('contacts'));
+        $books = Book::paginate(2);
+        return view('admin/books/index', compact('books'));
     }
 
     /**
@@ -25,8 +25,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('admin/contacts/contactus', [
-            "title" => "Contacts"
+        return view('admin/books/create', [
+            "title" => "Books"
         ]);
     }
 
@@ -39,10 +39,35 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $contact = Contact::create($request->all());
-        $contact->save();
+        // $book = Book::create($request->all());
 
-        return redirect()->route('contacts.create');
+
+        // $this->validate($request, [
+        //     'judul' => 'required',
+        //     'pengarang' => 'required',
+        //     'gambar' => 'required',
+        //     'penerbit' => 'required',
+        //     'thn_terbit' => 'required',
+        //     'jml_halaman' => 'required',
+        // ]);
+
+        if (!empty($request->file('gambar'))) {
+            $book = $request->all();
+            $book['gambar'] = $request->file('gambar')->store('book');
+
+            Book::create($book);
+
+            return redirect()->route('books.index');
+        } else{
+            $book = $request->all();
+            Book::create($book);
+
+            return redirect()->route('books.index');
+        }
+
+        $book->save();
+
+        // return redirect()->route('books.create');
     }
 
     /**
@@ -64,8 +89,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contact::findOrFail($id);
-        return view('admin/contacts/edit', compact('contact'));
+        $book = Book::findOrFail($id);
+        return view('admin/books/edit', compact('book'));
     }
 
     /**
@@ -77,11 +102,11 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contact = Contact::findOrFail($id);
-        $contact->update($request->all());
-        $contact->save();
+        $book = Book::findOrFail($id);
+        $book->update($request->all());
+        $book->save();
 
-        return redirect()->route('contacts.index');
+        return redirect()->route('books.index');
     }
 
     /**
@@ -92,9 +117,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Contact::findOrFail($id);
-        $contact->delete();
+        $book = Book::findOrFail($id);
+        $book->delete();
 
-        return redirect()->route('contacts.index');
+        return redirect()->route('books.index');
     }
 }

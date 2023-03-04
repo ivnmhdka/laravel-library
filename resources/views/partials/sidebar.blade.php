@@ -8,44 +8,18 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="{{ route('books.index')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
-                            <a href="{{ route('contacts.index')}}">
-                                <i class="fas fa-chart-bar"></i>Data Contacts As</a>
+                            <a href="{{ route('books.index')}}">
+                                <i class="fas fa-chart-bar"></i>Book Data</a>
                         </li>
                         <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
+                            <a href="{{ route('books.create') }}">
+                                <i class="far fa-check-square"></i>Create Book</a>
                         </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
+                        {{-- <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -59,8 +33,8 @@
                                     <a href="forget-pass.html">Forget Password</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="has-sub">
+                        </li> --}}
+                        {{-- <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-desktop"></i>UI Elements</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -99,7 +73,7 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </nav>
             </div>
         </aside>
