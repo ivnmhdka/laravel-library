@@ -7,17 +7,17 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        {{-- <li class="active has-sub">
                             <a class="js-arrow" href="{{ route('books.index')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('books.index')}}">
-                                <i class="fas fa-chart-bar"></i>Book Data</a>
+                                <i class="fas fa-chart-bar"></i>Data Buku</a>
                         </li>
                         <li>
                             <a href="{{ route('books.create') }}">
-                                <i class="far fa-check-square"></i>Create Book</a>
+                                <i class="far fa-check-square"></i>Tambah Buku</a>
                         </li>
                         {{-- <li class="has-sub">
                             <a class="js-arrow" href="#">

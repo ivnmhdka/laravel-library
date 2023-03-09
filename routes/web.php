@@ -15,32 +15,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('index', [
-        "title" => "Beranda"
-    ]);
-});
-
-// Route::get('/about', function () {
-//     return view('about', [
-//         "title" => "About",
-//         "nama" => "Muhammad Agi Febi Faisal",
-//         "email" => "3103120140@student.smktelkom-pwt.sch.id",
-//         "gambar" => "Agi2.jpeg"
-//     ]);
-// });
+Route::get('/', [BookController::class, 'tampil'])->name('books.tampil');
+Route::get('/books/show/{id}', [BookController::class, 'show']);
 
 Route::get('/gallery', function () {
     return view('gallery', [
         "title" => "Gallery"
     ]);
 });
-//Route::resource('/books', BookController::class);
-
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/books/index', [BookController::class, 'index'])->name('books.index');
     Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('books.edit');
@@ -48,5 +34,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/books/{id}/destroy', [BookController::class, 'destroy'])->name('books.destroy');
     Route::post('/books/store', [BookController::class, 'store'])->name('books.store');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
-
+    Route::get('/export-buku', [BookController::class, 'export_excel'])->name('export');
 });

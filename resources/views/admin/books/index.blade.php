@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Agi | Book Data')
+@section('title', 'Ivan | Book Data')
 @section('content')
 <div class="main-content">
     <div class="section__content section__content--p30">
@@ -7,12 +7,27 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="overview-wrap">
-                        <h2 class="title-1">Book Data</h2>
+                        <h2 class="title-1">Data Buku</h2>
                     </div>
                 </div>
             </div>
 
-            <div class="row m-t-30">
+            <div class="row g-3 m-t-10">
+                <div class="col-auto">
+                    <form class="form-inline" action="{{ route('books.index') }}" method="GET ">
+                        <div class="form-group mb-2">
+                            <input type="search" name="search" class="form-control" placeholder="Search" aria-describedby="password">
+                        </div>
+                    </form>
+                </div>
+                <div class="justify-content-md-end">
+                    <a href="{{ route('export') }}">
+                        <button class="btn btn-success">Download Data Buku</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row m-t-20">
                 <div class="col-md-12">
                     <!-- DATA TABLE-->
                     <div class="table-responsive m-b-40">
@@ -36,7 +51,7 @@
                                     <td>{{ $book->judul}}</td>
                                     <td>{{ $book->pengarang}}</td>
                                     {{-- <td>{{ $book->gambar}}</td> --}}
-                                    <td><img src="{{ asset('uploads/' . $book->gambar) }}" width="100"></td>
+                                    <td><img src="{{ asset('uploads/' . $book->gambar) }}" width="80"></td>
                                     <td>{{ $book->penerbit}}</td>
                                     <td>{{ $book->thn_terbit}}</td>
                                     <td>{{ $book->jml_halaman}}</td>

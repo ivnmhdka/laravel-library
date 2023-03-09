@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Agi | Books Data')
+@section('title', 'Ivan | Books Data')
 @section('content')
 <div class="main-content">
     <div class="section__content section__content--p30">
@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Form Create</strong> Buku
+                            <strong>Form Tambah</strong> Buku
                         </div>
                         <div class="card-body card-block">
                             <form action="{{ route('books.store')}}" enctype="multipart/form-data" method="post" class="">
@@ -22,20 +22,24 @@
                                     <input type="text" name="pengarang" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputpenerbit" class=" form-control-label">penerbit</label>
+                                    <label for="inputpenerbit" class=" form-control-label">Penerbit</label>
                                     <input name="penerbit" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="waktu">Tahun Terbit</label>
-                                    <input type="date" class="form-control" id="time" name="time" value="{{ old('time') }}">
+                                    <label for="inputthnterbit">Tahun Terbit</label>
+                                    <input type="date" class="form-control" id="thn_terbit" name="thn_terbit">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputjmlhalaman" class=" form-control-label">Jumlah Halaman</label>
                                     <input name="jml_halaman" class="form-control">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="inputgambar" class=" form-control-label">Gambar</label><br>
                                     <input type="file" name="gambar">
+                                </div> --}}
+                                <div class="mb-3">
+                                    <label for="inputgambar" class="form-label">Pilih Gambar</label>
+                                    <input class="form-control" type="file" name="gambar" multiple>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary btn-sm">

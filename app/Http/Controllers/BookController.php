@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BookExport;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BookController extends Controller
 {
@@ -12,9 +16,16 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::paginate(2);
+
+        if ($request->has('search')) {
+            $books = Book::where('judul', 'LIKE', '%' . $request->search . '%')->paginate(4);
+        } else {
+            $books = Book::paginate(4);
+        }
+
+
         return view('admin/books/index', compact('books'));
     }
 
@@ -38,19 +49,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $book = Book::create($request->all());
-
-
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'pengarang' => 'required',
-        //     'gambar' => 'required',
-        //     'penerbit' => 'required',
-        //     'thn_terbit' => 'required',
-        //     'jml_halaman' => 'required',
-        // ]);
-
         if (!empty($request->file('gambar'))) {
             $book = $request->all();
             $book['gambar'] = $request->file('gambar')->store('book');
@@ -58,16 +56,12 @@ class BookController extends Controller
             Book::create($book);
 
             return redirect()->route('books.index');
-        } else{
+        } else {
             $book = $request->all();
             Book::create($book);
 
             return redirect()->route('books.index');
         }
-
-        $book->save();
-
-        // return redirect()->route('books.create');
     }
 
     /**
@@ -78,7 +72,15 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $books = Book::find($id);
+        $bukus = Book::where('id', $id)->get();
+        $title = Book::all();
+
+        return view('detail', [
+            'books' => $books,
+            'bukus' => $bukus,
+            'title' => $books
+        ]);
     }
 
     /**
@@ -102,11 +104,31 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::findOrFail($id);
-        $book->update($request->all());
-        $book->save();
+        if (empty($request->file('gambar'))) {
 
-        return redirect()->route('books.index');
+            $books = Book::find($id);
+            $books->update([
+                'judul' => $request->judul,
+                'pengarang' => $request->pengarang,
+                'penerbit' => $request->penerbit,
+                'thn_terbit' => $request->thn_terbit,
+                'jml_halaman' => $request->jml_halaman,
+            ]);
+            return redirect()->route('books.index');
+        } else {
+
+            $books = Book::find($id);
+            Storage::delete($books->gambar);
+            $books->update([
+                'judul' => $request->judul,
+                'pengarang' => $request->pengarang,
+                'penerbit' => $request->penerbit,
+                'thn_terbit' => $request->thn_terbit,
+                'jml_halaman' => $request->jml_halaman,
+                'gambar' => $request->file('gambar')->store('book'),
+            ]);
+            return redirect()->route('books.index');
+        }
     }
 
     /**
@@ -121,5 +143,27 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('books.index');
+    }
+
+    public function tampil(Request $request)
+    {
+
+
+        if ($request->has('search')) {
+            $books = Book::where('judul', 'LIKE', '%' . $request->search . '%')->paginate(4);
+        } else {
+            $books = Book::all();
+        }
+
+
+        $title = 'Beranda';
+        return view('index', [
+            'books' => $books,
+            'title' => $title,
+        ]);
+    }
+    public function export_excel()
+    {
+        return Excel::download(new BookExport, 'databuku.xlsx');
     }
 }

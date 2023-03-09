@@ -19,7 +19,7 @@ class BooksTable extends Migration
             $table->string('pengarang');
             $table->string('gambar');
             $table->string('penerbit');
-            $table->timestamp('thn_terbit');
+            $table->date('thn_terbit');
             $table->integer('jml_halaman');
             $table->timestamps();
         });
