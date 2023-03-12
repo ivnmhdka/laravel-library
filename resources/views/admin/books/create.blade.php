@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Form Tambah</strong> Buku
+                            <strong>Tambah Buku</strong>
                         </div>
                         <div class="card-body card-block">
                             <form action="{{ route('books.store')}}" enctype="multipart/form-data" method="post" class="">

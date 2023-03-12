@@ -12,7 +12,7 @@
   <title>Ivan | Home</title>
 </head>
 
-<body>
+<body style="background-color: #E6E6FA">
 
   @include('partials.navbar');
 

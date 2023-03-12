@@ -35,4 +35,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/books/store', [BookController::class, 'store'])->name('books.store');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
     Route::get('/export-buku', [BookController::class, 'export_excel'])->name('export');
+    Route::get('/exportpdf', [BookController::class, 'exportpdf'])->name('exportpdf');
 });

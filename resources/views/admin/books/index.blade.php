@@ -20,11 +20,19 @@
                         </div>
                     </form>
                 </div>
-                <div class="justify-content-md-end">
-                    <a href="{{ route('export') }}">
-                        <button class="btn btn-success">Download Data Buku</button>
-                    </a>
+                <div class="row justify-content-md-end">
+                    <div class="col-md-auto">
+                        <a href="{{ route('export') }}">
+                            <button class="btn btn-success">Download Data Excel</button>
+                        </a>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="{{ route('exportpdf') }}">
+                            <button class="btn btn-danger">Download Data PDF</button>
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
             <div class="row m-t-20">

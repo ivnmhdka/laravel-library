@@ -6,8 +6,11 @@ use App\Exports\BookExport;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
+
 
 class BookController extends Controller
 {
@@ -165,5 +168,13 @@ class BookController extends Controller
     public function export_excel()
     {
         return Excel::download(new BookExport, 'databuku.xlsx');
+    }
+
+    public function exportpdf()
+    {
+        $book = Book::all();
+
+        $pdf = PDF::loadview('databuku-pdf', ['book' => $book])->setOptions(['defaultFont' => 'sans-serif']);;
+        return $pdf->download('databuku.pdf');
     }
 }
