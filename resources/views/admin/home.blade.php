@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="overview-wrap">
-                        <h2 class="title-1">Welcome Back Admin</h2>
+                        <h2 class="title-1">Hello Ivan!</h2>
                     </div>
                 </div>
             </div>

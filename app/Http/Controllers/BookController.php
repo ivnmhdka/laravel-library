@@ -151,13 +151,11 @@ class BookController extends Controller
     public function tampil(Request $request)
     {
 
-
         if ($request->has('search')) {
             $books = Book::where('judul', 'LIKE', '%' . $request->search . '%')->paginate(4);
         } else {
             $books = Book::all();
         }
-
 
         $title = 'Beranda';
         return view('index', [
