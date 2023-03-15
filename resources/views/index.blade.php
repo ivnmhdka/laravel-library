@@ -19,7 +19,9 @@
         <div class="col-md-3 mt-3 mb-3">
 
             <div class="card">
-                <img src="{{ asset('uploads/' . $book->gambar) }}" height="400" class="card-img-top" alt="...">
+                <a href="/books/show/{{ $book->id }}">
+                    <img src="{{ asset('uploads/' . $book->gambar) }}" height="400" class="card-img-top" alt="...">
+                </a>
                 <div class="card-body">
                     <h5 class="card-title">{{ $book->judul}}</h5>
                     <a href="/books/show/{{ $book->id }}" class="btn btn-success">Detail</a>

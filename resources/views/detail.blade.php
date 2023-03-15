@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ $books->judul }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $books->pengarang }}</h6>
+                    <h6 class="card-subtitle mb-2">{{ $books->pengarang }}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Detail :</h6>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Penerbit : {{ $books->penerbit }}</li>
